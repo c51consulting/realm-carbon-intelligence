@@ -16,7 +16,7 @@ export async function GET(request: NextRequest, { params }: { params: { farmId: 
     if (!input) return null
     const events = SEED_EVENTS.filter(e => e.paddock_id === paddock.id)
     const output = computeOverlay(input, paddock, events)
-    return { paddock_id: paddock.id, paddock_name: paddock.name, ...output }
+        return { ...output, paddock_name: paddock.name }
   }).filter(Boolean)
 
   const oppCount = results.filter(r => r?.carbon_state === 'opportunity').length
